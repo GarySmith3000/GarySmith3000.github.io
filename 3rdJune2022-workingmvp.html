@@ -1,0 +1,85 @@
+<html>
+    <head>
+        <title></title>
+       <link rel='stylesheet' type='text/css' href='acc.css' />
+       </head>
+    <body>
+    <div id="1" onclick="thisOne(1)" style="cursor: pointer;">Click Here!!!</div> 
+    <div id="2" onclick="thisOne(2)" style="cursor: pointer;">Click Here !!!</div> 
+    <div id="3" onclick="thisOne(3)" style="cursor: pointer;">Click Here !!!</div> 
+    <div id="4" onclick="thisOne(4)" style="cursor: pointer;">Click Here !!!</div> 
+    <div id="5" onclick="thisOne(5)" style="cursor: pointer;">Click Here !!!</div> 
+    <div id="6" onclick="thisOne(6)" style="cursor: pointer;">Click Here !!!</div> 
+    <div id="7" onclick="thisOne(7)" style="cursor: pointer;">Click Here !!!</div> 
+    <div id="8" onclick="thisOne(8)" style="cursor: pointer;">Click Here !!!</div> 
+    <div id="9" onclick="thisOne(9)" style="cursor: pointer;">Click Here !!!</div> 
+    <div id="10" onclick="thisOne(10)" style="cursor: pointer;">Click Here !!!</div> 
+
+    <div id="reset" onclick="reset()" style="cursor: pointer;">RESET</div> 
+    <div id="timer">TIMER</div> 
+  <script>
+   const display = ["23","45","32","1","67","43","54","65","33","5"]
+   const order = [3,7,4,1,10,6,8,9,5,2]
+   var startTime;
+   var endTime;
+
+   let text = "";
+    for (let i = 1; i <= 10; i++) {
+       var s = document.getElementById(i.toString());
+       s.innerHTML = display[i-1];
+     }
+
+      let count = 1;
+    
+        function thisOne(a) {
+            console.log("a: "+a);
+            if (count == order[a-1]){
+                var s = document.getElementById("reset");
+                s.innerHTML = "RESET";
+                var s = document.getElementById(a.toString());
+                s.innerHTML = "YUP";
+                if (count == 1){
+                  startTime = new Date();
+                  var s = document.getElementById("timer");
+                  s.innerHTML = "PLAYING"
+                }
+                if (count >=10){
+                  console.log(count);
+                  endTime = new Date();
+                  
+                  score = endTime - startTime; // milliseconds difference
+
+                  var s = document.getElementById("timer");
+                  s.innerHTML = score;
+                  gameEnds();
+                }
+              count++;
+            }else{
+                var s = document.getElementById(a.toString());
+                s.innerHTML = "WRONG!!!";
+                var s = document.getElementById("timer");
+                s.innerHTML = "FAILED"
+            }
+
+      }
+
+function reset(){
+  let text = "";
+  for (let i = 1; i <= 10; i++) {
+       var s = document.getElementById(i.toString());
+       s.innerHTML = display[i-1];
+     }
+     
+     count = 1;
+}
+    
+function gameEnds(){
+  var s = document.getElementById("reset");
+          s.innerHTML = "CLICK TO PLAY AGAIN?"
+}
+
+       </script>
+   
+   
+    </body>
+</html>
